@@ -54,6 +54,9 @@ FetchContent_MakeAvailableWithArgs(rocksdb
   PORTABLE=${PORTABLE}
 )
 
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "riscv64")
+    target_compile_options(rocksdb PRIVATE "-march=rv64gc")
+endif()
 add_library(rocksdb_with_headers INTERFACE)
 target_include_directories(rocksdb_with_headers INTERFACE ${rocksdb_SOURCE_DIR}/include)
 target_link_libraries(rocksdb_with_headers INTERFACE rocksdb)
