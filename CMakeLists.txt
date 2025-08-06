@@ -15,7 +15,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-icmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.16)
 if(DEFINED ENV{RISCV_CROSSCOMPILE})
     set(CMAKE_SYSTEM_NAME Linux CACHE STRING "")
     set(CMAKE_SYSTEM_PROCESSOR riscv64 CACHE STRING "")
