@@ -226,6 +226,7 @@ jobs:
           - name: Ubuntu RISC-V GCC without luaJIT (QEMU)
             os: ubuntu-24.04
             riscv_toolchain: true
+            toolchain_file: cmake/riscv64.cmake
             riscv_toolchain_url: "https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2025.07.03/riscv64-glibc-ubuntu-24.04-gcc-nightly-2025.07.03-nightly.tar.xz"
             cmake_crosscompiling: -DCMAKE_CROSSCOMPILING=TRUE
             cmake_system_name: -DCMAKE_SYSTEM_NAME=Linux
@@ -337,10 +338,7 @@ jobs:
       - name: Build Kvrocks (RISC-V)
         if: ${{ matrix.riscv_toolchain }}
         run: |
-          CC=riscv64-unknown-linux-gnu-gcc \
-          CXX=riscv64-unknown-linux-gnu-g++ \
-          ./x.py build -j$NPROC --unittest ${{ matrix.cmake_crosscompiling }} ${{ matrix.cmake_system_name }} \
-            ${{ matrix.cmake_system_processor }} ${{ matrix.without_luajit }}
+          ./x.py build -j$NPROC --unittest --toolchain ${{ matrix.toolchain_file }}
 
       - name: Setup Coredump
         if: ${{ startsWith(matrix.os, 'ubuntu') }}

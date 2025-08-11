@@ -40,14 +40,7 @@ FetchContent_GetProperties(jemalloc)
 if(NOT jemalloc_POPULATED)
   FetchContent_Populate(jemalloc)
 
-  if(CMAKE_CROSSCOMPILING AND CMAKE_SYSTEM_PROCESSOR MATCHES "riscv64")
-    message(STATUS "Configuring jemalloc for RISC-V cross-compilation")
-    set(JEMALLOC_CROSS_FLAGS
-      "--host=riscv64-unknown-linux-gnu"
-      "--build=${CMAKE_HOST_SYSTEM_PROCESSOR}-pc-linux-gnu"
-      "--with-lg-vaddr=48"
-      )
-  else()
+  if(NOT DEFINED JEMALLOC_CROSS_FLAGS)
     set(JEMALLOC_CROSS_FLAGS "")
   endif()
 
