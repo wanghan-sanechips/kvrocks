@@ -114,7 +114,7 @@ def prepare() -> None:
             print(f"{hook.name} installed at {dst}.")
 
 def build(dir: str, jobs: Optional[int], ninja: bool, unittest: bool, compiler: str, cmake_path: str, D: List[str],
-          skip_build: bool) -> None:
+          skip_build: bool, toolchain: Optional[str] = None) -> None:
     basedir = Path(__file__).parent.absolute()
 
     find_command("autoconf", msg="autoconf is required to build jemalloc")
