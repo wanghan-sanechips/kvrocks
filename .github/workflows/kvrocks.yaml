@@ -354,7 +354,6 @@ jobs:
           ./x.py test cpp
 
       - name: Run Go Integration Cases
-        if: ${{ !matrix.riscv_toolchain }}
         run: |
           ulimit -c unlimited
           export LSAN_OPTIONS="suppressions=$(realpath ./tests/lsan-suppressions)"
