@@ -40,10 +40,6 @@ FetchContent_GetProperties(jemalloc)
 if(NOT jemalloc_POPULATED)
   FetchContent_Populate(jemalloc)
 
-  if(NOT DEFINED JEMALLOC_CROSS_FLAGS)
-    set(JEMALLOC_CROSS_FLAGS "")
-  endif()
-
   execute_process(COMMAND autoconf
     WORKING_DIRECTORY ${jemalloc_SOURCE_DIR}
   )
